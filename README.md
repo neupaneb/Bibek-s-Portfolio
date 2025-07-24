@@ -1,10 +1,5 @@
 # Bibek's Portfolio Website
 
-<div align="center">
-  <br />
-  <img src="./banner.png" alt="Portfolio Website Banner" width="600" />
-  <br />
-</div>
 
 ## 📋 Table of Contents
 
