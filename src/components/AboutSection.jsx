@@ -41,44 +41,46 @@ export const AboutSection = () => {
           </div>
 
           <div className="grid grid-cols-1 gap-6">
+            {/* Full Stack Dev */}
             <div className="gradient-border p-6 card-hover">
               <div className="flex items-start gap-4">
                 <div className="p-3 rounded-full bg-primary/10">
                   <Code className="h-6 w-6 text-primary" />
                 </div>
                 <div className="text-left">
-                  <h4 className="font-semibold text-lg">Web Development</h4>
+                  <h4 className="font-semibold text-lg">Full Stack Development</h4>
                   <p className="text-muted-foreground">
-                    Building responsive and performant web apps with React, Node.js, and more.
+                    Passionate about building robust web apps using React, Node.js, Flask, and MongoDB.
                   </p>
                 </div>
               </div>
             </div>
 
+            {/* Community Leadership */}
             <div className="gradient-border p-6 card-hover">
               <div className="flex items-start gap-4">
                 <div className="p-3 rounded-full bg-primary/10">
                   <User className="h-6 w-6 text-primary" />
                 </div>
                 <div className="text-left">
-                  <h4 className="font-semibold text-lg">UI/UX Design</h4>
+                  <h4 className="font-semibold text-lg">Community Leadership</h4>
                   <p className="text-muted-foreground">
-                    Crafting user-friendly interfaces focused on simplicity and accessibility.
+                    Led the Google Developer Student Club, organized 10+ events & ULM’s first hackathon.
                   </p>
                 </div>
               </div>
             </div>
 
+            {/* Internships */}
             <div className="gradient-border p-6 card-hover">
               <div className="flex items-start gap-4">
                 <div className="p-3 rounded-full bg-primary/10">
                   <Briefcase className="h-6 w-6 text-primary" />
                 </div>
-
                 <div className="text-left">
-                  <h4 className="font-semibold text-lg">Project Management</h4>
+                  <h4 className="font-semibold text-lg">Software Engineering Internships</h4>
                   <p className="text-muted-foreground">
-                    Coordinating projects efficiently with agile practices and strong teamwork.
+                    Developed real-world apps and systems in professional environments like Chain-Link Engineering.
                   </p>
                 </div>
               </div>
