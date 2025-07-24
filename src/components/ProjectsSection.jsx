@@ -7,7 +7,7 @@ const projects = [
     description:
       "A fitness tracking app to monitor workouts, calories, and daily activity. Designed with user-friendly UI and persistent data storage.",
     image: "/projects/fitness.png",
-    tags: ["React", "Firebase", "TailwindCSS"],
+    tags: ["React", "MongoDB", "TailwindCSS", "Node.js", "Express.js"],
     demoUrl: "#",
     githubUrl: "https://github.com/neupaneb/Fitness-Tracker",
   },
