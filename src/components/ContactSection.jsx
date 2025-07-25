@@ -14,18 +14,48 @@ export const ContactSection = () => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     setIsSubmitting(true);
 
-    setTimeout(() => {
-      toast({
-        title: "Message sent!",
-        description: "Thank you for your message. I'll get back to you soon.",
+    const formData = {
+      name: e.target.name.value,
+      email: e.target.email.value,
+      message: e.target.message.value,
+    };
+
+    try {
+      const response = await fetch("http://localhost:5050/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
       });
-      setIsSubmitting(false);
-    }, 1500);
+
+      const data = await response.json();
+
+      if (response.ok) {
+        toast({
+          title: "Message sent!",
+          description: data.message,
+        });
+        e.target.reset();
+      } else {
+        toast({
+          title: "Error",
+          description: data.error || "Something went wrong.",
+          variant: "destructive",
+        });
+      }
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to send message. Please try again later.",
+        variant: "destructive",
+      });
+    }
+
+    setIsSubmitting(false);
   };
 
   return (
@@ -53,10 +83,10 @@ export const ContactSection = () => {
                 <div>
                   <h4 className="font-medium">Email</h4>
                   <a
-                    href="mailto:bibekneupane4464@gmail.com"
+                    href="mailto:neupanebibek4464@gmail.com"
                     className="text-muted-foreground hover:text-primary transition-colors"
                   >
-                    bibekneupane4464@gmail.com
+                    neupanebibek4464@gmail.com
                   </a>
                 </div>
               </div>
