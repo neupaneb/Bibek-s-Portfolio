@@ -26,7 +26,8 @@ export const ContactSection = () => {
     };
 
     try {
-      const response = await fetch("http://localhost:5050/contact", {
+      const response = await fetch("https://bibek-s-portfolio-backend.onrender.com/contact", {
+
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),

@@ -8,10 +8,14 @@ dotenv.config();
 const app = express();
 
 const corsOptions = {
-  origin: "http://localhost:5173",
+  origin: [
+    "http://localhost:5173",
+    "https://bibek-s-portfolio.vercel.app",  // Add your deployed frontend URL here
+  ],
   methods: ["GET", "POST", "OPTIONS"],
   allowedHeaders: ["Content-Type"],
 };
+
 app.use(cors(corsOptions));
 app.use(express.json());
 
