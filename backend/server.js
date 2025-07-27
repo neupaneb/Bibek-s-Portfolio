@@ -10,7 +10,7 @@ const app = express();
 const corsOptions = {
   origin: [
     "http://localhost:5173",
-    "https://bibek-s-portfolio.vercel.app",  // Add your deployed frontend URL here
+    "https://bibek-s-portfolio-co55ut416-neupanebs-projects.vercel.app", // Your deployed frontend URL
   ],
   methods: ["GET", "POST", "OPTIONS"],
   allowedHeaders: ["Content-Type"],
