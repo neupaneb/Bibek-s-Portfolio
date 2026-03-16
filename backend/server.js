@@ -18,10 +18,12 @@ const corsOptions = {
     "http://localhost:4173",
     "https://bibek-s-portfolio-co55ut416-neupanebs-projects.vercel.app",
     "https://bibek-s-portfolio.vercel.app",
+    "https://bibek-s-portfolio-xi.vercel.app",
   ],
   methods: ["GET", "POST", "OPTIONS"],
   allowedHeaders: ["Content-Type"],
 };
+
 
 app.use(cors(corsOptions));
 app.use(express.json());
