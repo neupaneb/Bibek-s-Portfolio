@@ -1,6 +1,7 @@
 import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
+import { ThemeToggle } from "./ThemeToggle";
 
 const navItems = [
   { name: "Home", href: "#hero" },
@@ -41,26 +42,34 @@ export const Navbar = () => {
         </a>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex space-x-8">
-          {navItems.map((item, key) => (
-            <a
-              key={key}
-              href={item.href}
-              className="text-foreground/80 hover:text-primary transition-colors duration-300"
-            >
-              {item.name}
-            </a>
-          ))}
+        <div className="hidden items-center space-x-4 md:flex">
+          <div className="flex space-x-8">
+            {navItems.map((item, key) => (
+              <a
+                key={key}
+                href={item.href}
+                className="text-foreground/80 hover:text-primary transition-colors duration-300"
+              >
+                {item.name}
+              </a>
+            ))}
+          </div>
+
+          <ThemeToggle />
         </div>
 
-        {/* Mobile Toggle Button */}
-        <button
-          onClick={() => setIsMenuOpen((prev) => !prev)}
-          className="md:hidden p-2 text-foreground z-50"
-          aria-label={isMenuOpen ? "Close Menu" : "Open Menu"}
-        >
-          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        <div className="flex items-center gap-3 md:hidden">
+          <ThemeToggle />
+
+          {/* Mobile Toggle Button */}
+          <button
+            onClick={() => setIsMenuOpen((prev) => !prev)}
+            className="rounded-full border border-border/70 bg-background/90 p-2 text-foreground shadow-lg shadow-black/5 backdrop-blur-sm"
+            aria-label={isMenuOpen ? "Close Menu" : "Open Menu"}
+          >
+            {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
+          </button>
+        </div>
 
         {/* Mobile Menu */}
         <div
@@ -72,7 +81,11 @@ export const Navbar = () => {
               : "opacity-0 pointer-events-none"
           )}
         >
-          <div className="flex flex-col space-y-8 text-xl">
+          <div className="mb-8">
+            <ThemeToggle className="h-12 w-12" />
+          </div>
+
+          <div className="flex flex-col items-center space-y-8 text-xl">
             {navItems.map((item, key) => (
               <a
                 key={key}

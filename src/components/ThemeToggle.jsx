@@ -2,12 +2,14 @@ import { Moon, Sun } from "lucide-react";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 
-export const ThemeToggle = () => {
+export const ThemeToggle = ({ className = "" }) => {
   const [isDarkMode, setIsDarkMode] = useState(false);
 
   useEffect(() => {
     const storedTheme = localStorage.getItem("theme");
-    if (storedTheme === "dark") {
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+    if (storedTheme === "dark" || (!storedTheme && prefersDark)) {
       setIsDarkMode(true);
       document.documentElement.classList.add("dark");
     } else {
@@ -32,14 +34,19 @@ export const ThemeToggle = () => {
     <button
       onClick={toggleTheme}
       className={cn(
-        "fixed max-sm:hidden top-5 right-5 z-50 p-2 rounded-full transition-colors duration-300",
-        "focus:outline-none"
+        "inline-flex h-11 w-11 items-center justify-center rounded-full border border-border/70",
+        "bg-background/90 text-foreground shadow-lg shadow-black/5 backdrop-blur-sm",
+        "transition-all duration-300 hover:scale-105 hover:border-primary/50 hover:text-primary",
+        "focus:outline-none focus:ring-2 focus:ring-primary/70 focus:ring-offset-2 focus:ring-offset-background",
+        className
       )}
+      aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
+      title={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
     >
       {isDarkMode ? (
-        <Sun className="h-6 w-6 text-yellow-300" />
+        <Sun className="h-5 w-5 text-amber-400" />
       ) : (
-        <Moon className="h-6 w-6 text-blue-900" />
+        <Moon className="h-5 w-5 text-sky-900 dark:text-sky-200" />
       )}
     </button>
   );

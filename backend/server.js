@@ -2,15 +2,22 @@ import express from "express";
 import cors from "cors";
 import nodemailer from "nodemailer";
 import dotenv from "dotenv";
+import path from "path";
+import { fileURLToPath } from "url";
 
-dotenv.config();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+dotenv.config({ path: path.join(__dirname, ".env") });
 
 const app = express();
 
 const corsOptions = {
   origin: [
     "http://localhost:5173",
-    "https://bibek-s-portfolio-co55ut416-neupanebs-projects.vercel.app", // Your deployed frontend URL
+    "http://localhost:4173",
+    "https://bibek-s-portfolio-co55ut416-neupanebs-projects.vercel.app",
+    "https://bibek-s-portfolio.vercel.app",
   ],
   methods: ["GET", "POST", "OPTIONS"],
   allowedHeaders: ["Content-Type"],
