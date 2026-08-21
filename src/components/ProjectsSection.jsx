@@ -1,102 +1,71 @@
-import { ArrowRight, ExternalLink, Github } from "lucide-react";
+import { ArrowRight, Github } from "lucide-react";
 
 const projects = [
   {
     id: 1,
-    title: "Fitness Tracker",
+    title: "MiniDB: SQL Database Engine",
     description:
-      "A fitness tracking app to monitor workouts, calories, and daily activity. Designed with user-friendly UI and persistent data storage.",
-    image: "/projects/fitness.png",
-    tags: ["React", "MongoDB", "TailwindCSS", "Node.js", "Express.js"],
-    demoUrl: "#",
-    githubUrl: "https://github.com/neupaneb/Fitness-Tracker",
+      "SQL engine with a custom REPL, parser, executor, persistent storage, and tests.",
+    image: "/projects/minidb-sql.png",
+    imageClass: "object-contain p-4",
+    tags: ["Go", "SQL Parser", "Storage Engine", "Unit Testing"],
+    githubUrl: "https://github.com/neupaneb/minidb",
   },
   {
     id: 2,
-    title: "Soccer Stats",
+    title: "Financial Sentiment Analysis (BERT)",
     description:
-      "Track your favorite global soccer clubs with real-time data using API-Football. Includes club search, league filtering, and MongoDB caching.",
-    image: "/projects/soccer.png",
-    tags: ["React", "Node.js", "MongoDB", "API-Football"],
-    demoUrl: "#",
-    githubUrl: "https://github.com/neupaneb/Soccer-Stats",
+      "Fine-tuned BERT model for financial sentiment with a Streamlit interface.",
+    image: "/projects/sentiment-analysis.png",
+    imageClass: "object-cover",
+    tags: ["Python", "PyTorch", "Hugging Face", "Streamlit"],
+    githubUrl: "https://github.com/nyaupane-netra/Financial-Sentiment-Analysis",
   },
   {
     id: 3,
-    title: "YouTube Transcript Summarizer",
+    title: "Soccer-Stat Analyzer",
     description:
-      "A powerful tool to summarize long YouTube videos using transcript extraction and NLP summarization techniques.",
-    image: "/projects/summarizer.png",
-    tags: ["Python", "NLP", "YouTube API", "Flask"],
-    demoUrl: "#",
-    githubUrl: "https://github.com/neupaneb/-YouTube-Transcript-Summarizer",
-  },
-  {
-    id: 4,
-    title: "Chat Me App",
-    description:
-      "Real-time chat application with user authentication, group chats, and responsive design. Built with modern MERN stack.",
-    image: "/projects/chat.png",
-    tags: ["React", "Node.js", "Express", "MongoDB", "Socket.io"],
-    demoUrl: "#",
-    githubUrl: "https://github.com/neupaneb/Chat-Me-App",
-  },
-  {
-    id: 5,
-    title: "BlackJack",
-    description:
-      "A fully functional Blackjack card game application built with Python, implementing game logic and user interaction.",
-    image: "/projects/blackjack.png",
-    tags: ["Python"],
-    demoUrl: "#",
-    githubUrl: "https://github.com/neupaneb/BlackJack",
-  },
-  {
-    id: 6,
-    title: "Wine Prediction",
-    description:
-      "Machine learning model predicting wine quality based on physicochemical tests, built with Python and scikit-learn.",
-    image: "/projects/wine.png",
-    tags: ["Python", "Machine Learning", "scikit-learn"],
-    demoUrl: "#",
-    githubUrl: "https://github.com/neupaneb/Wine-prediction",
+      "Real-time soccer data app with API-Football and MongoDB caching.",
+    image: "/projects/soccer.png",
+    imageClass: "object-cover",
+    tags: ["React", "Node.js", "MongoDB", "API-Football"],
+    githubUrl: "https://github.com/neupaneb/Soccer-Stats",
   },
 ];
 
 export const ProjectsSection = () => {
   return (
-    <section id="projects" className="py-24 px-4 relative">
+    <section id="projects" className="border-t border-border py-14">
       <div className="container mx-auto max-w-5xl">
-        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
+        <h2 className="mb-4 text-left text-3xl font-semibold md:text-4xl">
           {" "}
           Featured <span className="text-primary"> Projects </span>
         </h2>
 
-        <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-          Here are some of my recent projects. Each project was carefully
-          crafted with attention to detail, performance, and user experience.
+        <p className="mb-10 max-w-2xl text-left text-muted-foreground">
+          Selected work across databases, machine learning, and full-stack development.
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 gap-5 lg:grid-cols-3">
           {projects.map((project, key) => (
             <div
               key={key}
-              className="group bg-card rounded-lg overflow-hidden shadow-xs card-hover"
+              className="group flex flex-col overflow-hidden rounded-lg border border-border bg-card card-hover"
             >
-              <div className="h-48 overflow-hidden">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-              </div>
+              {project.image ? (
+                <div className="h-48 overflow-hidden bg-white"><img src={project.image} alt={project.title} className={`h-full w-full ${project.imageClass}`} /></div>
+              ) : (
+                <div className="flex h-40 items-end bg-slate-900 p-6">
+                  <span className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-200">{project.tags[0]} / Featured Build</span>
+                </div>
+              )}
 
-              <div className="p-6">
+              <div className="flex flex-1 flex-col p-6">
                 <div className="flex flex-wrap gap-2 mb-4">
                   {project.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="px-2 py-1 text-xs font-medium border rounded-full bg-secondary text-secondary-foreground"
+                    className="rounded border border-border bg-secondary px-2 py-1 text-xs font-medium text-secondary-foreground"
                     >
                       {tag}
                     </span>
@@ -107,16 +76,8 @@ export const ProjectsSection = () => {
                 <p className="text-muted-foreground text-sm mb-4">
                   {project.description}
                 </p>
-                <div className="flex justify-between items-center">
+                <div className="mt-auto flex items-center justify-between pt-2">
                   <div className="flex space-x-3">
-                    <a
-                      href={project.demoUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="text-foreground/80 hover:text-primary transition-colors duration-300"
-                    >
-                      <ExternalLink size={20} />
-                    </a>
                     <a
                       href={project.githubUrl}
                       target="_blank"
@@ -132,9 +93,9 @@ export const ProjectsSection = () => {
           ))}
         </div>
 
-        <div className="text-center mt-12">
+        <div className="mt-10 text-left">
           <a
-            className="cosmic-button w-fit flex items-center mx-auto gap-2"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline"
             target="_blank"
             rel="noreferrer"
             href="https://github.com/neupaneb"

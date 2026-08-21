@@ -44,7 +44,8 @@ app.post("/contact", async (req, res) => {
     });
 
     const mailOptions = {
-      from: email,
+      from: `Bibek Neupane Portfolio <${process.env.MY_EMAIL}>`,
+      replyTo: email,
       to: process.env.MY_EMAIL,
       subject: `New message from ${name}`,
       text: `Message: ${message}\nFrom: ${name} (${email})`,

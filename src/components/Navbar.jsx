@@ -1,11 +1,11 @@
 import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
-import { ThemeToggle } from "./ThemeToggle";
 
 const navItems = [
   { name: "Home", href: "#hero" },
   { name: "About", href: "#about" },
+  { name: "Experience", href: "#experience" },
   { name: "Skills", href: "#skills" },
   { name: "Projects", href: "#projects" },
   { name: "Contact", href: "#contact" },
@@ -27,44 +27,39 @@ export const Navbar = () => {
   return (
     <nav
       className={cn(
-        "fixed w-full z-40 transition-all duration-300",
-        isScrolled ? "py-3 bg-background/80 backdrop-blur-md shadow-xs" : "py-5"
+        "fixed z-40 w-full border-b transition-colors duration-200",
+        isScrolled ? "border-border bg-white/95" : "border-transparent bg-white/90"
       )}
     >
-      <div className="container flex items-center justify-between">
+      <div className="container mx-auto flex h-16 max-w-6xl items-center justify-between">
         <a
-          className="text-xl font-bold text-primary flex items-center"
+          className="text-base font-semibold tracking-tight text-foreground"
           href="#hero"
         >
-          <span className="relative z-10">
-            <span className="text-glow text-foreground">Bibek</span> Portfolio
-          </span>
+          Bibek Neupane
         </a>
 
         {/* Desktop Navigation */}
-        <div className="hidden items-center space-x-4 md:flex">
-          <div className="flex space-x-8">
+        <div className="hidden items-center md:flex">
+          <div className="flex items-center gap-7">
             {navItems.map((item, key) => (
               <a
                 key={key}
                 href={item.href}
-                className="text-foreground/80 hover:text-primary transition-colors duration-300"
+                className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
               >
                 {item.name}
               </a>
             ))}
           </div>
 
-          <ThemeToggle />
         </div>
 
-        <div className="flex items-center gap-3 md:hidden">
-          <ThemeToggle />
-
+        <div className="md:hidden">
           {/* Mobile Toggle Button */}
           <button
             onClick={() => setIsMenuOpen((prev) => !prev)}
-            className="rounded-full border border-border/70 bg-background/90 p-2 text-foreground shadow-lg shadow-black/5 backdrop-blur-sm"
+            className="rounded-md border border-border bg-white p-2 text-foreground"
             aria-label={isMenuOpen ? "Close Menu" : "Open Menu"}
           >
             {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
@@ -74,23 +69,19 @@ export const Navbar = () => {
         {/* Mobile Menu */}
         <div
           className={cn(
-            "fixed inset-0 bg-background/95 backdrop-blur-md z-40 flex flex-col items-center justify-center",
-            "transition-all duration-300 md:hidden",
+            "fixed inset-x-0 top-16 z-40 border-b border-border bg-white px-6 py-8 md:hidden",
+            "transition-all duration-200",
             isMenuOpen
               ? "opacity-100 pointer-events-auto"
               : "opacity-0 pointer-events-none"
           )}
         >
-          <div className="mb-8">
-            <ThemeToggle className="h-12 w-12" />
-          </div>
-
-          <div className="flex flex-col items-center space-y-8 text-xl">
+          <div className="flex flex-col items-start gap-6">
             {navItems.map((item, key) => (
               <a
                 key={key}
                 href={item.href}
-                className="text-foreground/80 hover:text-primary transition-colors duration-300"
+                className="font-medium text-muted-foreground hover:text-foreground"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {item.name}

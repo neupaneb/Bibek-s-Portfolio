@@ -1,91 +1,34 @@
-import { useState } from "react";
-import { cn } from "@/lib/utils";
-
-const skills = [
-  // Languages
-  { name: "Python (NumPy, Pandas, Scikit)", level: 90, category: "language" },
-  { name: "C / C++", level: 85, category: "language" },
-  { name: "JavaScript", level: 90, category: "language" },
-  { name: "Java", level: 75, category: "language" },
-  { name: "C#", level: 70, category: "language" },
-  { name: "SQL", level: 80, category: "language" },
-  { name: "TypeScript", level: 80, category: "language" },
-  { name: "HTML5 / CSS3", level: 90, category: "language" },
-
-  // Tools & Frameworks
-  { name: "ReactJS", level: 90, category: "framework" },
-  { name: "NodeJS", level: 80, category: "framework" },
-  { name: "ExpressJS", level: 75, category: "framework" },
-  { name: "MongoDB", level: 75, category: "framework" },
-  { name: "Django", level: 70, category: "framework" },
-  { name: "Flask", level: 70, category: "framework" },
-  { name: "PyTorch", level: 65, category: "framework" },
-  { name: "TensorFlow", level: 60, category: "framework" },
-  { name: "Tableau", level: 60, category: "framework" },
-  { name: "Git", level: 85, category: "tool" },
-  { name: "Firebase", level: 65, category: "tool" },
-  { name: ".NET", level: 60, category: "framework" },
-  { name: "MySQL", level: 70, category: "framework" },
+const skillGroups = [
+  {
+    title: "Languages",
+    skills: ["Python", "C/C++", "JavaScript", "TypeScript", "Java", "C#", "SQL", "HTML/CSS"],
+  },
+  {
+    title: "Frameworks",
+    skills: ["React", "Node.js", "Express", "Django", "Flask", "PyTorch", "TensorFlow", ".NET"],
+  },
+  {
+    title: "Data & Infrastructure",
+    skills: ["PostgreSQL", "MongoDB", "MySQL", "Redis", "Docker", "AWS EC2", "GitHub Actions", "Linux"],
+  },
 ];
 
-const categories = ["all", "language", "framework", "tool"];
-
-export const SkillsSection = () => {
-  const [activeCategory, setActiveCategory] = useState("all");
-
-  const filteredSkills = skills.filter(
-    (skill) => activeCategory === "all" || skill.category === activeCategory
-  );
-
-  return (
-    <section id="skills" className="py-24 px-4 relative bg-secondary/30">
-      <div className="container mx-auto max-w-5xl">
-        <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
-          My <span className="text-primary"> Skills</span>
-        </h2>
-
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
-          {categories.map((category, key) => (
-            <button
-              key={key}
-              onClick={() => setActiveCategory(category)}
-              className={cn(
-                "px-5 py-2 rounded-full transition-colors duration-300 capitalize",
-                activeCategory === category
-                  ? "bg-primary text-primary-foreground"
-                  : "bg-secondary/70 text-foreground hover:bg-secondary"
-              )}
-            >
-              {category}
-            </button>
-          ))}
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredSkills.map((skill, key) => (
-            <div
-              key={key}
-              className="bg-card p-6 rounded-lg shadow-xs card-hover"
-            >
-              <div className="text-left mb-4">
-                <h3 className="font-semibold text-lg">{skill.name}</h3>
-              </div>
-              <div className="w-full bg-secondary/50 h-2 rounded-full overflow-hidden">
-                <div
-                  className="bg-primary h-2 rounded-full origin-left animate-[grow_1.5s_ease-out]"
-                  style={{ width: skill.level + "%" }}
-                />
-              </div>
-
-              <div className="text-right mt-1">
-                <span className="text-sm text-muted-foreground">
-                  {skill.level}%
-                </span>
-              </div>
-            </div>
-          ))}
-        </div>
+export const SkillsSection = () => (
+  <section id="skills" className="border-t border-border py-14">
+    <div className="container mx-auto max-w-6xl">
+      <div className="mb-10 max-w-3xl text-left">
+        <p className="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-primary">Technical Skills</p>
+        <h2 className="text-3xl font-semibold md:text-4xl">Tools I work with.</h2>
       </div>
-    </section>
-  );
-};
+
+      <div className="grid border-y border-border md:grid-cols-3 md:divide-x md:divide-border">
+        {skillGroups.map((group) => (
+          <div key={group.title} className="border-b border-border py-7 text-left last:border-b-0 md:border-b-0 md:px-7 md:first:pl-0 md:last:pr-0">
+            <h3 className="font-semibold text-foreground">{group.title}</h3>
+            <p className="mt-3 leading-7 text-muted-foreground">{group.skills.join(" · ")}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+);
